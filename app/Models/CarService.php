@@ -20,6 +20,6 @@ class CarService extends Model
 
     public function storeServices(): HasMany
     {
-        return $this->hasMany(storeServices::class, 'car_service_id', 'id');
+        return $this->hasMany(storeService::class, 'car_service_id', 'id');
     }
 }
