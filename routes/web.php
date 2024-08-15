@@ -13,3 +13,5 @@ Route::get('/booking/{carStore:slug}', [FrontController::class, 'booking'])->nam
 Route::post('/booking/{carStore:slug}/{carService:slug}', [FrontController::class, 'booking_store'])->name('front.booking.store');
 Route::get('/booking/{carStore}/{carService}/payment', [FrontController::class, 'booking_payment'])->name('front.booking.payment');
 Route::get('/booking/success/{bookingTransaction}', [FrontController::class, 'success_booking'])->name('front.success.booking');
+Route::get('/getHotelRooms', [FrontController::class, 'getHotelRooms']);
+Route::get('/getHotelRoomstes', [FrontController::class, 'getHotelRoomsTes']);

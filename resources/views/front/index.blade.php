@@ -1,13 +1,5 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="{{asset('output.css')}}" rel="stylesheet">
-  <link href="{{asset('main.css')}}" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-</head>
-<body>
+@extends('layout.index')
+@section('content')
   <main class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
     <div class="bg-[#270738] absolute top-0 max-w-[640px] w-full mx-auto rounded-b-[50px] h-[370px]"></div>
     <header class="flex flex-col gap-3 items-center text-center pt-10 relative z-10">
@@ -23,10 +15,10 @@
           <div class="w-6 h-6 flex shrink-0 mr-[6px]">
             <img src="{{asset('assets/images/icons/location-normal.svg')}}" alt="icon">
           </div>
-          <select name="city_id" id="city_id" class=" bg-white font-semibold w-full outline-none">
-           @foreach ($cities as $item)
-               <option value="{{$item->id}}">{{$item->name}}</option>
-           @endforeach
+          <select name="city_id" id="city_id" class="bg-white font-semibold w-full outline-none">
+            @foreach ($cities as $item)
+                <option value="{{$item->id}}">{{$item->name}}</option>
+            @endforeach
           </select>
         </div>
       </div>
@@ -34,7 +26,7 @@
         <h1 class="font-semibold text-white">Our Great Services</h1>
         <div class="grid grid-cols-3 gap-4">
             @forelse ($services as $item)
-            <a href="#" class="service-link card-services">
+            <a href="#" data-service-id="{{$item->id}}" class="service-link card-services">
                 <div class="rounded-[20px] border border-[#E9E8ED] py-4 flex flex-col items-center text-center gap-4 bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FF8E62]">
                   <div class="w-[50px] h-[50px] flex shrink-0">
                     <img src="{{Storage::url($item->icon)}}" alt="icon">
@@ -101,10 +93,9 @@
   <script>
     document.querySelectorAll(".service-link").forEach(function(link) {
       link.addEventListener("click", function(e) {
-        console.log(link.getAttribute("data-service"));
         e.preventDefault();
         const cityId = document.getElementById("city_id").value;
-        const serviceId = link.getAttribute("data-service");
+        const serviceId = link.getAttribute("data-service-id");
        
 
         window.location.href = `/search?city_id=${cityId}&service_type=${serviceId}`;
@@ -112,5 +103,4 @@
     });
     
   </script>
-</body>
-</html>
+@endsection
