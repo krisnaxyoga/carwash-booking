@@ -30,8 +30,9 @@ class FrontController extends Controller
         $city = City::find($city_id);
         session()->put('serviceTypeId', $request->input('service_type'));
 
-        return view('front.search',['carServices'=>$services,'store'=>$carStore,'city_name'=>$city ? $city->name : 'unknown']); 
-    }
+        return view('front.search',['carServices'=>$carServices,'store'=>$carStore,'city_name'=>$city ? $city->name : 'unknown']); 
+    }   
+ 
 
     public function getHotelRooms(Request $request)
     {

@@ -8,8 +8,8 @@
         </div>
       </a>
       <div class="flex flex-col w-fit text-center">
-        <h1 class="font-semibold text-lg leading-[27px]">Gold Wash</h1>
-        <p class="text-sm leading-[21px] text-[#909DBF]">Kota Jakarta, 183 Stores</p>
+        <h1 class="font-semibold text-lg leading-[27px]">{{$carServices->name}}</h1>
+        <p class="text-sm leading-[21px] text-[#909DBF]">Kota {{$city_name}}, {{$store->count()}} Stores</p>
       </div>
       <button class="w-10 h-10 flex shrink-0">
         <img src="assets/images/icons/filter.svg" alt="icon">
@@ -21,7 +21,13 @@
             <div class="flex flex-col gap-4 rounded-[20px] ring-1 ring-[#E9E8ED] pb-4 bg-white overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-[#FF8E62]">
               <div class="w-full h-[120px] flex shrink-0 overflow-hidden relative">
                 <img src="{{Storage::url($value->thumbnail)}}" class="w-full h-full object-cover" alt="thumbnail">
-                <p class="rounded-full p-[6px_10px] bg-[#41BE64] w-fit h-fit font-bold text-[10px] leading-[15px] text-white absolute top-4 right-4">OPEN NOW</p>
+                @if($value->is_open)
+                 <p class="rounded-full p-[6px_10px] bg-[#41BE64] w-fit h-fit font-bold text-[10px] leading-[15px] text-white absolute top-4 right-4">OPEN NOW</p>
+               
+                @else
+                  <p class="rounded-full p-[6px_10px] bg-[#FF8E62] w-fit h-fit font-bold text-[10px] leading-[15px] text-white absolute top-4 right-4">CLOSE</p>
+                @endif
+                
               </div>
               <div class="flex items-center justify-between gap-4 px-4">
                 <div class="title flex flex-col gap-[6px]">
@@ -35,7 +41,7 @@
                     <div class="w-4 h-4 flex shrink-0">
                       <img src="assets/images/icons/location.svg" alt="icon">
                     </div>
-                    <p class="text-sm leading-[21px] text-[#909DBF]">{{Str::substr($value->address,0,10)}}... , {{$value->city->name}}</p>
+                    <p class="text-sm leading-[21px] text-[#909DBF]">{{Str::substr($value->address,0,20)}}... , {{$value->city->name}}</p>
                   </div>
                 </div>
                 <div class="rating flex flex-col gap-[6px]">
