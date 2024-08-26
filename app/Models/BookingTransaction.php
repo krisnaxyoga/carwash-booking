@@ -11,6 +11,18 @@ class BookingTransaction extends Model
     use HasFactory, softDeletes;
     protected $guarded = [];
 
+    protected $casts = [
+        'started_at' => 'date',
+    ];
+
+    public static function generateUniqueTrxId(){
+        $prefix = 'CC';
+        do {
+            $randomString = $prefix . mt_rand(1000, 9999);
+        } while (self::where('trx_id', $randomString)->exists());
+        return $randomString;
+    }
+
     public function carStore(): BelongsTo
     {
         return $this->belongsTo(CarStore::class, 'car_store_id', 'id');

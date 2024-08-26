@@ -5,9 +5,9 @@ use App\Http\Controllers\FrontController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/transactions', [FrontController::class, 'transactions'])->name('front.transactions');
-Route::post('/transactions/details', [FrontController::class, 'index'])->name('front.transactions.details');
+Route::post('/transactions/details', [FrontController::class, 'transactions_details'])->name('front.transactions.details');
 Route::get('/search', [FrontController::class, 'search'])->name('front.search');
-Route::get('/store/details/{carStore:slig}', [FrontController::class, 'details'])->name('front.details');
+Route::get('/store/details/{carStore:slug}', [FrontController::class, 'details'])->name('front.details');
 Route::post('/booking/payment/submit', [FrontController::class, 'booking_payment_store'])->name('front.booking.payment.store');
 Route::get('/booking/{carStore:slug}', [FrontController::class, 'booking'])->name('front.booking');
 Route::post('/booking/{carStore:slug}/{carService:slug}', [FrontController::class, 'booking_store'])->name('front.booking.store');
